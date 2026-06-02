@@ -3,6 +3,15 @@ namespace BuildingBlocks.Domain.Abstractions;
 
 public abstract class AggregateRoot<TId> : Entity<TId>
 {
+    protected AggregateRoot()
+    {
+    }
+
+    protected AggregateRoot(TId id)
+        : base(id)
+    {
+    }
+
     private readonly List<IDomainEvent> _domainEvents = [];
 
     public IReadOnlyCollection<IDomainEvent> DomainEvents
