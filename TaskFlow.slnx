@@ -1,0 +1,24 @@
+<Solution>
+  <Folder Name="/BuildingBlocks/">
+    <Project Path="BuildingBlocks/BuildingBlocks.Application/BuildingBlocks.Application.csproj" Id="432dafac-b523-406e-ae77-2522500d3d35" />
+    <Project Path="BuildingBlocks/BuildingBlocks.Domain/BuildingBlocks.Domain.csproj" Id="6ff7174f-4c71-43f7-9144-b1b96be4d781" />
+    <Project Path="BuildingBlocks/BuildingBlocks.Infrastructure/BuildingBlocks.Infrastructure.csproj" Id="de99ab13-d4dc-494b-96ff-24be84ab5d6a" />
+  </Folder>
+  <Folder Name="/Modules/" />
+  <Folder Name="/Modules/Identity/">
+    <Project Path="Modules/Identity/Identity.Application/Identity.Application.csproj" Id="b5f76772-c5f6-43bd-bf04-e977b5f2c646" />
+    <Project Path="Modules/Identity/Identity.Domain/Identity.Domain.csproj" Id="6b49334b-e6bf-4e00-abbf-4377fb6964a4" />
+    <Project Path="Modules/Identity/Identity.Infrastructure/Identity.Infrastructure.csproj" Id="1ff060c7-64c6-46ee-af51-73755e3ef8a9" />
+  </Folder>
+  <Folder Name="/Modules/Projects/">
+    <Project Path="Modules/Projects/Projects.Application/Projects.Application.csproj" Id="123b72dd-99a8-424e-a4f3-1f8670ed1221" />
+    <Project Path="Modules/Projects/Projects.Domain/Projects.Domain.csproj" Id="a83c9c0e-7dcb-4496-a747-d9c477dc1259" />
+    <Project Path="Modules/Projects/Projects.Infrastructure/Projects.Infrastructure.csproj" Id="ab1ed630-2983-4a99-904c-d37733da0680" />
+  </Folder>
+  <Folder Name="/Modules/Tasks/">
+    <Project Path="Modules/Tasks/Tasks.Application/Tasks.Application.csproj" Id="9c8e16fe-9dd9-4d31-b5b1-19021f13fa1c" />
+    <Project Path="Modules/Tasks/Tasks.Domain/Tasks.Domain.csproj" Id="8f0ffc04-f1d9-4a3c-816a-79521deb049c" />
+    <Project Path="Modules/Tasks/Tasks.Infrastructure/Tasks.Infrastructure.csproj" Id="8234dbeb-c09f-44cc-b967-ea85e9c7fee7" />
+  </Folder>
+  <Project Path="TaskFlow.Web/TaskFlow.Web.csproj" Id="cebbb559-c7ea-4b4b-acbf-aecbee37c048" />
+</Solution>
