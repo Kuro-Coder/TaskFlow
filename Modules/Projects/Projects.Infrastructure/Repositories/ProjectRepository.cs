@@ -30,7 +30,17 @@ public sealed class ProjectRepository
         CancellationToken cancellationToken)
     {
         return await _context.Projects
+            .AsNoTracking()
             .FirstOrDefaultAsync(
+                x => x.Id == id,
+                cancellationToken);
+    }
+    public async Task<bool> ExistsAsync(
+        Guid id,
+        CancellationToken cancellationToken)
+    {
+        return await _context.Projects
+            .AnyAsync(
                 x => x.Id == id,
                 cancellationToken);
     }
