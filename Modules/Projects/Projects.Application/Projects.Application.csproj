@@ -11,4 +11,11 @@
     <ProjectReference Include="..\Projects.Domain\Projects.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\Delete\" />
+    <Folder Include="Commands\Update\" />
+    <Folder Include="Queries\GetById\" />
+    <Folder Include="Queries\GetList\" />
+  </ItemGroup>
+
 </Project>
