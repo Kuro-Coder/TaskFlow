@@ -1,5 +1,6 @@
 using TaskFlow.Web.Components;
 using Projects.Infrastructure;
+using BuildingBlocks.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,9 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+builder.Services.AddBuildingBlocks();
+
 builder.Services.AddProjectsInfrastructure(
-    builder.Configuration
-        .GetConnectionString("DefaultConnection")!);
+    builder.Configuration.GetConnectionString("DefaultConnection")!);
 
 var app = builder.Build();
 

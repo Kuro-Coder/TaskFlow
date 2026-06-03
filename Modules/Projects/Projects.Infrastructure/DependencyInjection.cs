@@ -23,9 +23,12 @@ public static class DependencyInjection
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         // Handlers
-        services.AddScoped<
-            ICommandHandler<CreateProjectCommand, Guid>,
-            CreateProjectCommandHandler>();
+        services.Scan(scan => scan
+            .FromAssemblies(typeof(CreateProjectCommandHandler).Assembly)
+            .AddClasses(classes =>
+                classes.AssignableTo(typeof(ICommandHandler<,>)))
+            .AsImplementedInterfaces()
+            .WithScopedLifetime());
 
         return services;
     }
