@@ -24,17 +24,25 @@ public sealed class CreateProjectCommandHandler
         CreateProjectCommand command,
         CancellationToken cancellationToken)
     {
-        var project = Project.Create(
-            command.Name);
+        try
+        {
+            var project = Project.Create(
+                command.Name);
 
-        await _repository.AddAsync(
-            project,
-            cancellationToken);
+            await _repository.AddAsync(
+                project,
+                cancellationToken);
 
-        await _unitOfWork.SaveChangesAsync(
-            cancellationToken);
+            await _unitOfWork.SaveChangesAsync(
+                cancellationToken);
 
-        return Result<Guid>.Success(
-            project.Id);
+            return Result<Guid>.Success(
+                project.Id);
+        }
+        catch (Exception ex)
+        {
+
+            throw;
+        }
     }
 }
