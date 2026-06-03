@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Modules\Identity\Identity.Application\Identity.Application.csproj" />
-    <ProjectReference Include="..\Modules\Projects\Projects.Application\Projects.Application.csproj" />
-    <ProjectReference Include="..\Modules\Tasks\Tasks.Application\Tasks.Application.csproj" />
+    <ProjectReference Include="..\Modules\Identity\Identity.Infrastructure\Identity.Infrastructure.csproj" />
+    <ProjectReference Include="..\Modules\Projects\Projects.Infrastructure\Projects.Infrastructure.csproj" />
+    <ProjectReference Include="..\Modules\Tasks\Tasks.Infrastructure\Tasks.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
