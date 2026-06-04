@@ -12,7 +12,19 @@ public interface IProjectRepository
         Guid id,
         CancellationToken cancellationToken);
 
+    Task<Project?> GetByIdForUpdateAsync(
+        Guid id,
+        CancellationToken cancellationToken);
+
+    Task<Project?> GetByIdForDeleteAsync(
+        Guid id,
+        CancellationToken cancellationToken);
+
     Task<bool> ExistsAsync(
         Guid id,
         CancellationToken cancellationToken);
+
+    Task<List<Project>> GetAll(
+        CancellationToken cancellationToken);
+    
 }

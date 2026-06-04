@@ -1,11 +1,6 @@
 ﻿using BuildingBlocks.Application.Messaging;
 using BuildingBlocks.Application.Results;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BuildingBlocks.Infrastructure.Messaging;
 
@@ -22,6 +17,7 @@ public sealed class QueryDispatcher : IQueryDispatcher
         IQuery<TResult> query,
         CancellationToken cancellationToken = default)
     {
+
         var handlerType =
             typeof(IQueryHandler<,>)
                 .MakeGenericType(
