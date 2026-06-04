@@ -1,6 +1,7 @@
 using BuildingBlocks.Infrastructure;
 using Projects.Infrastructure;
 using Projects.Presentation;
+using TaskFlow.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseGlobalExceptionHandler();
 
 app.MapControllers();
 
