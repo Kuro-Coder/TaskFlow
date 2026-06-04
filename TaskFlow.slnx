@@ -17,6 +17,7 @@
     <Project Path="Modules/Projects/Projects.Application/Projects.Application.csproj" Id="123b72dd-99a8-424e-a4f3-1f8670ed1221" />
     <Project Path="Modules/Projects/Projects.Domain/Projects.Domain.csproj" Id="a83c9c0e-7dcb-4496-a747-d9c477dc1259" />
     <Project Path="Modules/Projects/Projects.Infrastructure/Projects.Infrastructure.csproj" Id="ab1ed630-2983-4a99-904c-d37733da0680" />
+    <Project Path="Modules/Projects/Projects.Presentation/Projects.Presentation.csproj" Id="c465ed84-59f3-4409-9c39-630757362335" />
   </Folder>
   <Folder Name="/Modules/Tasks/">
     <Project Path="Modules/Tasks/Tasks.Application/Tasks.Application.csproj" Id="9c8e16fe-9dd9-4d31-b5b1-19021f13fa1c" />

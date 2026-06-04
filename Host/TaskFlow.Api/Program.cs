@@ -1,5 +1,6 @@
 using BuildingBlocks.Infrastructure;
 using Projects.Infrastructure;
+using Projects.Presentation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,11 @@ builder.Services.AddBuildingBlocks();
 
 builder.Services.AddProjectsInfrastructure(
     builder.Configuration.GetConnectionString("DefaultConnection")!);
+
+builder.Services
+    .AddControllers()
+    .AddApplicationPart(
+        typeof(AssemblyReference).Assembly);
 
 var app = builder.Build();
 
