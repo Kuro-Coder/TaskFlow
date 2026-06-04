@@ -31,6 +31,11 @@ public static class DependencyInjection
             .AddClasses(c =>
                 c.AssignableTo(typeof(IValidator<>)))
             .AsImplementedInterfaces()
+            .WithScopedLifetime()
+
+            .AddClasses(c =>
+                c.AssignableTo(typeof(IDomainEventHandler<>)))
+            .AsImplementedInterfaces()
             .WithScopedLifetime());
 
         services.Scan(scan => scan

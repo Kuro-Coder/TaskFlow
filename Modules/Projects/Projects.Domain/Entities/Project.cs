@@ -14,7 +14,7 @@ public sealed class Project : AuditableAggregateRoot<Guid>, ISoftDelete
     private Project(
         Guid id,
         string name)
-        : base()
+        : base(id)
     {
         Name = name;
     }
