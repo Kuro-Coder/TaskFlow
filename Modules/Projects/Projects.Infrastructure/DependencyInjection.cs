@@ -27,6 +27,13 @@ public static class DependencyInjection
 
         // Handlers
         services.Scan(scan => scan
+            .FromAssemblies(typeof(Projects.Application.AssemblyReference).Assembly)
+            .AddClasses(c =>
+                c.AssignableTo(typeof(IValidator<>)))
+            .AsImplementedInterfaces()
+            .WithScopedLifetime());
+
+        services.Scan(scan => scan
             .FromAssemblies(
                 typeof(Projects.Application.AssemblyReference).Assembly)
             .AddClasses(c =>

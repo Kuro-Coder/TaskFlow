@@ -1,4 +1,5 @@
-﻿using BuildingBlocks.Application.Messaging;
+﻿using BuildingBlocks.Application.Abstractions;
+using BuildingBlocks.Application.Messaging;
 using BuildingBlocks.Application.Results;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,6 +18,24 @@ public sealed class CommandDispatcher : ICommandDispatcher
         ICommand<TResult> command,
         CancellationToken cancellationToken = default)
     {
+
+        var validatorType =
+            typeof(IValidator<>)
+                .MakeGenericType(command.GetType());
+
+        dynamic? validator =
+            _serviceProvider.GetService(validatorType);
+        if (validator is not null)
+        {
+            var errors = validator.Validate((dynamic)command);
+
+            if (errors.Count > 0)
+            {
+                return Result<TResult>.Failure(
+                    errors[0]);
+            }
+        }
+
         var handlerType =
             typeof(ICommandHandler<,>)
                 .MakeGenericType(
