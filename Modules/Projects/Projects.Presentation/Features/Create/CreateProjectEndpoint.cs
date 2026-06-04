@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Projects.Application.Commands.Create;
 
-namespace Projects.Presentation.Features.CreateProject;
+namespace Projects.Presentation.Features.Create;
 
 [ApiController]
 [Route("api/projects")]

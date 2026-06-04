@@ -30,10 +30,4 @@ public sealed class CommandDispatcher : ICommandDispatcher
             (dynamic)command,
             cancellationToken);
     }
-
-    public Task<Result> Dispatch(
-        ICommand command, CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
 }

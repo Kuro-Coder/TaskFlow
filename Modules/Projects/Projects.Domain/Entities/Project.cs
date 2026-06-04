@@ -37,4 +37,9 @@ public sealed class Project
 
         return project;
     }
+    public void UpdateName(
+    string name)
+    {
+        Name = name;
+    }
 }

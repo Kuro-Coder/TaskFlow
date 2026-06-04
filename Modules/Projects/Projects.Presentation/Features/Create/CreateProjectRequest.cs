@@ -1,4 +1,4 @@
-﻿namespace Projects.Presentation.Features.CreateProject;
+﻿namespace Projects.Presentation.Features.Create;
 
 public class CreateProjectRequest
 {

@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Folder Include="Commands\Delete\" />
-    <Folder Include="Commands\Update\" />
     <Folder Include="Queries\GetList\" />
   </ItemGroup>
 
