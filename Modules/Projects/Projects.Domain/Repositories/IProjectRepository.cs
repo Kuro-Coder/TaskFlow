@@ -16,6 +16,10 @@ public interface IProjectRepository
         Guid id,
         CancellationToken cancellationToken);
 
+    Task<Project?> GetByIdForDeleteAsync(
+        Guid id,
+        CancellationToken cancellationToken);
+
     Task<bool> ExistsAsync(
         Guid id,
         CancellationToken cancellationToken);

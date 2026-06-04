@@ -47,6 +47,16 @@ public sealed class ProjectRepository
                 cancellationToken);
     }
 
+    public async Task<Project?> GetByIdForDeleteAsync(
+        Guid id,
+        CancellationToken cancellationToken)
+    {
+        return await _context.Projects
+            .FirstOrDefaultAsync(
+                x => x.Id == id,
+                cancellationToken);
+    }
+
     public async Task<bool> ExistsAsync(
         Guid id,
         CancellationToken cancellationToken)
