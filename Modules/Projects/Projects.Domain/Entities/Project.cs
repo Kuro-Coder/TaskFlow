@@ -3,19 +3,18 @@ using Projects.Domain.Events;
 
 namespace Projects.Domain.Entities;
 
-public sealed class Project
-    : AggregateRoot<Guid>
+public sealed class Project : AuditableAggregateRoot<Guid>, ISoftDelete
 {
     public string Name { get; private set; }
 
-    private Project()
-    {
-    }
+    public bool IsDeleted { get; private set; }
+
+    public DateTime? DeletedOnUtc { get; private set; }
 
     private Project(
         Guid id,
         string name)
-        : base(id)
+        : base()
     {
         Name = name;
     }
@@ -37,9 +36,21 @@ public sealed class Project
 
         return project;
     }
+
     public void UpdateName(
     string name)
     {
         Name = name;
     }
+
+    public void Delete()
+    {
+        IsDeleted = true;
+        DeletedOnUtc = DateTime.UtcNow;
+    }
+
+    private Project()
+    {
+    }
+
 }

@@ -13,4 +13,5 @@ public abstract class Entity<TId>
     {
         Id = id;
     }
+
 }
