@@ -2,6 +2,7 @@
 using Projects.Domain.Entities;
 using Projects.Domain.Repositories;
 using Projects.Infrastructure.Persistence;
+using System.Threading;
 
 namespace Projects.Infrastructure.Repositories;
 
@@ -54,5 +55,14 @@ public sealed class ProjectRepository
             .AnyAsync(
                 x => x.Id == id,
                 cancellationToken);
+    }
+
+
+    public async Task<List<Project>> GetAll(
+        CancellationToken cancellationToken)
+    {
+        return await _context.Projects
+            .AsNoTracking()
+            .ToListAsync(cancellationToken);
     }
 }

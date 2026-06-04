@@ -19,4 +19,8 @@ public interface IProjectRepository
     Task<bool> ExistsAsync(
         Guid id,
         CancellationToken cancellationToken);
+
+    Task<List<Project>> GetAll(
+        CancellationToken cancellationToken);
+    
 }
