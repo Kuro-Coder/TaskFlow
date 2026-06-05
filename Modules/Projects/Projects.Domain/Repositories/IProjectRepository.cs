@@ -1,4 +1,5 @@
-﻿using Projects.Domain.Entities;
+﻿using BuildingBlocks.Domain.Shared;
+using Projects.Domain.Entities;
 
 namespace Projects.Domain.Repositories;
 
@@ -26,5 +27,5 @@ public interface IProjectRepository
 
     Task<List<Project>> GetAll(
         CancellationToken cancellationToken);
-    
+
 }
