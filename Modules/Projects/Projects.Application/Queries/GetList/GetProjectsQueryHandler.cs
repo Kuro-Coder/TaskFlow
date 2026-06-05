@@ -1,36 +1,32 @@
 ﻿using BuildingBlocks.Application.Messaging;
 using BuildingBlocks.Application.Results;
-using Projects.Domain.Repositories;
+using BuildingBlocks.Domain.Shared;
 
 namespace Projects.Application.Queries.GetList;
 
 public sealed class GetProjectsQueryHandler
     : IQueryHandler<
         GetProjectsQuery,
-        List<ProjectListItemResponse>>
+        PagedResult<ProjectListItemResponse>>
 {
-    private readonly IProjectRepository _repository;
+    private readonly IProjectQueries _queries;
 
     public GetProjectsQueryHandler(
-        IProjectRepository repository)
+        IProjectQueries repository)
     {
-        _repository = repository;
+        _queries = repository;
     }
 
-    public async Task<Result<List<ProjectListItemResponse>>> Handle(
+    public async Task<Result<PagedResult<ProjectListItemResponse>>> Handle(
         GetProjectsQuery query,
         CancellationToken cancellationToken)
     {
-        var projects = await _repository.GetAll(
+        var result = await _queries.GetPagedAsync(
+            query.Page,
+            query.PageSize,
             cancellationToken);
 
-        var result = projects
-            .Select(x => new ProjectListItemResponse(
-                x.Id,
-                x.Name))
-            .ToList();
-
-        return Result<List<ProjectListItemResponse>>
+        return Result<PagedResult<ProjectListItemResponse>>
             .Success(result);
     }
 }
