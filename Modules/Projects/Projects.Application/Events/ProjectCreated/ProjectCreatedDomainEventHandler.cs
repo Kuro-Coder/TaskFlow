@@ -11,7 +11,7 @@ public sealed class ProjectCreatedDomainEventHandler
         ProjectCreatedDomainEvent domainEvent,
         CancellationToken cancellationToken)
     {
-        Debug.WriteLine($"Project created: {domainEvent.ProjectId}");
+        Console.WriteLine($"Project created: {domainEvent.ProjectId}");
 
         return Task.CompletedTask;
     }
