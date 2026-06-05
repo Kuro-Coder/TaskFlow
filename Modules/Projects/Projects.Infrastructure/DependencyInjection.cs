@@ -1,6 +1,7 @@
 ﻿using BuildingBlocks.Application.Abstractions;
 using BuildingBlocks.Application.Messaging;
 using BuildingBlocks.Infrastructure.Messaging;
+using BuildingBlocks.Infrastructure.Persistence.Interceptors;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Projects.Domain.Repositories;
@@ -15,8 +16,14 @@ public static class DependencyInjection
         this IServiceCollection services,
         string connectionString)
     {
-        services.AddDbContext<ProjectsDbContext>(options =>
-            options.UseSqlServer(connectionString));
+        services.AddDbContext<ProjectsDbContext>((sp, options) =>
+        {
+            options.UseSqlServer(connectionString);
+
+            options.AddInterceptors(
+                sp.GetRequiredService<AuditInterceptor>(),
+                sp.GetRequiredService<DomainEventsInterceptor>());
+        });
 
         services.AddScoped<IProjectRepository, ProjectRepository>();
 
@@ -50,6 +57,7 @@ public static class DependencyInjection
                 c.AssignableTo(typeof(IQueryHandler<,>)))
             .AsImplementedInterfaces()
             .WithScopedLifetime());
+
 
         return services;
     }
