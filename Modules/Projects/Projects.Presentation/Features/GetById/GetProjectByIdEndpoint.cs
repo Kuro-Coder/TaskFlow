@@ -30,9 +30,6 @@ public sealed class GetProjectByIdEndpoint
         if (result.IsFailure)
             return Results.NotFound(result.Error);
 
-        return Results.Ok(
-            new GetProjectByIdResponse(
-                result.Value!.Id,
-                result.Value.Name));
+        return Results.Ok(result.Value!);
     }
 }
