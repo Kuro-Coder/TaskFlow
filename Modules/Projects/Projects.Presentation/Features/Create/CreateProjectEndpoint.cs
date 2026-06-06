@@ -26,7 +26,7 @@ public sealed class CreateProjectEndpoint : ControllerBase
         var result = await _dispatcher.Dispatch(new CreateProjectCommand(
             request.Name), cancellationToken);
         if (result.IsFailure)
-            return Results.BadRequest(result.Error);
+            return result.ToProblemResult();
 
         return Results.Ok(result.Value);
     }

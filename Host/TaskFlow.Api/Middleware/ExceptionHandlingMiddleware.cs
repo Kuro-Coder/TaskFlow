@@ -1,6 +1,7 @@
-﻿using System.Net;
-using System.Text.Json;
+﻿using BuildingBlocks.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
+using System.Text.Json;
 
 namespace TaskFlow.Api.Middleware;
 
@@ -40,20 +41,58 @@ public sealed class ExceptionHandlingMiddleware
         HttpContext context,
         Exception exception)
     {
-        context.Response.ContentType =
-            "application/problem+json";
-
-        var problemDetails = new ProblemDetails
+        ProblemDetails problem;
+        switch (exception)
         {
-            Title = "Server Error",
-            Detail = exception.Message,
-            Status = (int)HttpStatusCode.InternalServerError
-        };
+            case NotFoundException ex:
 
-        context.Response.StatusCode =
-            problemDetails.Status.Value;
+                problem = new ProblemDetails
+                {
+                    Title = "Not Found",
+                    Detail = ex.Message,
+                    Status = StatusCodes.Status404NotFound
+                };
+
+                break;
+
+            case ConflictException ex:
+
+                problem = new ProblemDetails
+                {
+                    Title = "Conflict",
+                    Detail = ex.Message,
+                    Status = StatusCodes.Status409Conflict
+                };
+
+                break;
+
+            case ValidationException ex:
+
+                problem = new ValidationProblemDetails(ex.Errors)
+                {
+                    Title = "Validation Error",
+                    Status = StatusCodes.Status400BadRequest
+                };
+
+                break;
+
+            default:
+
+                problem = new ProblemDetails
+                {
+                    Title = "Server Error",
+                    Detail = exception.Message,
+                    Status = StatusCodes.Status500InternalServerError
+                };
+
+                break;
+        }
+
+
+        context.Response.ContentType = "application/problem+json";
+        context.Response.StatusCode = problem.Status.Value;
 
         await context.Response.WriteAsync(
-            JsonSerializer.Serialize(problemDetails));
+            JsonSerializer.Serialize(problem));
     }
 }

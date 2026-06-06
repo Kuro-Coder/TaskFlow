@@ -28,7 +28,7 @@ public sealed class GetProjectByIdEndpoint
             new GetProjectByIdQuery(id),
             cancellationToken);
         if (result.IsFailure)
-            return Results.NotFound(result.Error);
+            return result.ToProblemResult();
 
         return Results.Ok(result.Value!);
     }

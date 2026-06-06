@@ -28,7 +28,7 @@ public sealed class DeleteProjectEndpoint
         var result = await _dispatcher.Dispatch(new DeleteProjectCommand(
             id), cancellationToken);
         if (result.IsFailure)
-            return Results.BadRequest(result.Error);
+            return result.ToProblemResult();
 
         return Results.NoContent();
     }

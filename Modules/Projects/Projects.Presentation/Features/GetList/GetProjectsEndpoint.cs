@@ -28,7 +28,7 @@ public sealed class GetProjectsEndpoint
             request.Page,
             request.PageSize), cancellationToken);
         if (result.IsFailure)
-            return Results.BadRequest(result.Error);
+            return result.ToProblemResult();
 
         return Results.Ok(result.Value);
     }

@@ -30,7 +30,7 @@ public sealed class UpdateProjectEndpoint
             request.Name),
             cancellationToken);
         if (result.IsFailure)
-            return Results.BadRequest(result.Error);
+            return result.ToProblemResult();
 
         return Results.NoContent();
     }
