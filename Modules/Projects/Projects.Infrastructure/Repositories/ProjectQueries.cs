@@ -6,10 +6,15 @@ using Projects.Infrastructure.Persistence;
 
 namespace Projects.Infrastructure.Repositories;
 
-
 public sealed class ProjectQueries : IProjectQueries
 {
     private readonly ProjectsDbContext _context;
+    public ProjectQueries(
+        ProjectsDbContext context)
+    {
+        _context = context;
+    }
+
 
     public async Task<PagedResult<GetProjectsResponse>> GetPagedAsync(
         int page,
