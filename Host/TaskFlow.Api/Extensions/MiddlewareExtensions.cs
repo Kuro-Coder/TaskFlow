@@ -5,7 +5,7 @@ namespace TaskFlow.Api.Extensions;
 public static class MiddlewareExtensions
 {
     public static IApplicationBuilder
-        UseGlobalExceptionHandler(
+        UseExceptionHandling(
             this IApplicationBuilder app)
     {
         return app.UseMiddleware<

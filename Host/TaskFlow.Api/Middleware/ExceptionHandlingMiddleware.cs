@@ -1,4 +1,7 @@
-﻿
+﻿using System.Net;
+using System.Text.Json;
+using Microsoft.AspNetCore.Mvc;
+
 namespace TaskFlow.Api.Middleware;
 
 public sealed class ExceptionHandlingMiddleware
@@ -27,15 +30,30 @@ public sealed class ExceptionHandlingMiddleware
                 exception,
                 exception.Message);
 
-            context.Response.StatusCode =
-                StatusCodes.Status500InternalServerError;
-
-            await context.Response.WriteAsJsonAsync(
-                new
-                {
-                    Error = "InternalServerError",
-                    Message = "An unexpected error occurred."
-                });
+            await HandleExceptionAsync(
+                context,
+                exception);
         }
+    }
+
+    private static async Task HandleExceptionAsync(
+        HttpContext context,
+        Exception exception)
+    {
+        context.Response.ContentType =
+            "application/problem+json";
+
+        var problemDetails = new ProblemDetails
+        {
+            Title = "Server Error",
+            Detail = exception.Message,
+            Status = (int)HttpStatusCode.InternalServerError
+        };
+
+        context.Response.StatusCode =
+            problemDetails.Status.Value;
+
+        await context.Response.WriteAsync(
+            JsonSerializer.Serialize(problemDetails));
     }
 }
