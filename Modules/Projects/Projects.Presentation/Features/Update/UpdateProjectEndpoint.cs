@@ -1,7 +1,7 @@
 ﻿using BuildingBlocks.Application.Messaging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Projects.Application.Commands.Update;
+using Projects.Application.Projects.Commands.Update;
 
 namespace Projects.Presentation.Features.Update;
 
@@ -25,16 +25,12 @@ public sealed class UpdateProjectEndpoint
         UpdateProjectRequest request,
         CancellationToken cancellationToken)
     {
-        var result = await _dispatcher.Dispatch(
-            new UpdateProjectCommand(
-                id,
-                request.Name),
+        var result = await _dispatcher.Dispatch(new UpdateProjectCommand(
+            id,
+            request.Name),
             cancellationToken);
-
         if (result.IsFailure)
-        {
-            return Results.BadRequest(result.Error);
-        }
+            return result.ToProblemResult();
 
         return Results.NoContent();
     }

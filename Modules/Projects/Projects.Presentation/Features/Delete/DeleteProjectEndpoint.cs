@@ -1,7 +1,7 @@
 ﻿using BuildingBlocks.Application.Messaging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Projects.Application.Commands.Delete;
+using Projects.Application.Projects.Commands.Delete;
 
 namespace Projects.Presentation.Features.Delete;
 
@@ -25,15 +25,10 @@ public sealed class DeleteProjectEndpoint
         DeleteProjectRequest request,
         CancellationToken cancellationToken)
     {
-        var result = await _dispatcher.Dispatch(
-            new DeleteProjectCommand(
-                id),
-            cancellationToken);
-
+        var result = await _dispatcher.Dispatch(new DeleteProjectCommand(
+            id), cancellationToken);
         if (result.IsFailure)
-        {
-            return Results.BadRequest(result.Error);
-        }
+            return result.ToProblemResult();
 
         return Results.NoContent();
     }

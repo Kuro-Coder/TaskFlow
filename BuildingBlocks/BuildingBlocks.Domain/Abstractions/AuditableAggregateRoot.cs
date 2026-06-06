@@ -2,7 +2,8 @@
 namespace BuildingBlocks.Domain.Abstractions;
 
 public abstract class AuditableAggregateRoot<TId>
-    : AggregateRoot<TId>
+    : AggregateRoot<TId>,
+      IAuditable
 {
     protected AuditableAggregateRoot()
     {
@@ -13,8 +14,8 @@ public abstract class AuditableAggregateRoot<TId>
     {
     }
 
-    public DateTime CreatedOnUtc { get; protected set; }
+    public DateTime CreatedOnUtc { get; set; }
 
-    public DateTime? ModifiedOnUtc { get; protected set; }
+    public DateTime? ModifiedOnUtc { get; set; }
 
 }

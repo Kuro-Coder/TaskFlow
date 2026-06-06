@@ -4,4 +4,4 @@ namespace Projects.Domain.Events;
 
 public sealed record ProjectCreatedDomainEvent(
     Guid ProjectId)
-    : IDomainEvent;
+    : DomainEvent;

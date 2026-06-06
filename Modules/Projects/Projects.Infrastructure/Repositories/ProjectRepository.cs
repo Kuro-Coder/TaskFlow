@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Azure;
+using BuildingBlocks.Application.Common;
+using BuildingBlocks.Domain.Shared;
+using Microsoft.EntityFrameworkCore;
 using Projects.Domain.Entities;
 using Projects.Domain.Repositories;
 using Projects.Infrastructure.Persistence;
@@ -67,7 +70,6 @@ public sealed class ProjectRepository
                 cancellationToken);
     }
 
-
     public async Task<List<Project>> GetAll(
         CancellationToken cancellationToken)
     {
@@ -75,4 +77,5 @@ public sealed class ProjectRepository
             .AsNoTracking()
             .ToListAsync(cancellationToken);
     }
+
 }
