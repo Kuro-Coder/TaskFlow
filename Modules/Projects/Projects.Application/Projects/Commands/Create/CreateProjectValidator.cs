@@ -4,7 +4,7 @@ using BuildingBlocks.Application.Results;
 using Projects.Domain.Entities;
 using Projects.Domain.Repositories;
 
-namespace Projects.Application.Commands.Create;
+namespace Projects.Application.Projects.Commands.Create;
 
 public sealed class CreateProjectValidator
     : IValidator<CreateProjectCommand>

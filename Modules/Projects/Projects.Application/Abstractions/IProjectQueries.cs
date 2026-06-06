@@ -1,11 +1,11 @@
 ﻿using BuildingBlocks.Domain.Shared;
-using Projects.Application.Queries.GetList;
+using Projects.Application.Projects.Queries.GetList;
 
-namespace Projects.Application.Queries;
+namespace Projects.Application.Abstractions;
 
 public interface IProjectQueries
 {
-    Task<PagedResult<ProjectListItemResponse>> GetPagedAsync(
+    Task<PagedResult<GetProjectsResponse>> GetPagedAsync(
         int page,
         int pageSize,
         CancellationToken cancellationToken);

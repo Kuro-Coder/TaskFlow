@@ -1,13 +1,12 @@
 ﻿using BuildingBlocks.Application.Messaging;
 using BuildingBlocks.Application.Results;
 using BuildingBlocks.Domain.Shared;
+using Projects.Application.Abstractions;
 
-namespace Projects.Application.Queries.GetList;
+namespace Projects.Application.Projects.Queries.GetList;
 
-public sealed class GetProjectsQueryHandler
-    : IQueryHandler<
-        GetProjectsQuery,
-        PagedResult<ProjectListItemResponse>>
+public sealed class GetProjectsQueryHandler : 
+    IQueryHandler<GetProjectsQuery, PagedResult<GetProjectsResponse>>
 {
     private readonly IProjectQueries _queries;
 
@@ -17,7 +16,7 @@ public sealed class GetProjectsQueryHandler
         _queries = repository;
     }
 
-    public async Task<Result<PagedResult<ProjectListItemResponse>>> Handle(
+    public async Task<Result<PagedResult<GetProjectsResponse>>> Handle(
         GetProjectsQuery query,
         CancellationToken cancellationToken)
     {
@@ -26,7 +25,7 @@ public sealed class GetProjectsQueryHandler
             query.PageSize,
             cancellationToken);
 
-        return Result<PagedResult<ProjectListItemResponse>>
+        return Result<PagedResult<GetProjectsResponse>>
             .Success(result);
     }
 }

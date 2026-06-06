@@ -1,5 +1,4 @@
-﻿
-namespace Projects.Presentation.Features.GetList;
+﻿namespace Projects.Application.Projects.Queries.GetList;
 
 public sealed record GetProjectsResponse(
     Guid Id,

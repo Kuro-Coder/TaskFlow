@@ -1,8 +1,7 @@
 ﻿using BuildingBlocks.Application.Messaging;
 using Projects.Domain.Events;
-using System.Diagnostics;
 
-namespace Projects.Application.Events.ProjectCreated;
+namespace Projects.Application.Projects.Events.ProjectCreated;
 
 public sealed class ProjectCreatedDomainEventHandler
     : IDomainEventHandler<ProjectCreatedDomainEvent>

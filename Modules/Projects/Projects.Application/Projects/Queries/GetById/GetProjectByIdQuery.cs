@@ -1,7 +1,7 @@
 ﻿using BuildingBlocks.Application.Messaging;
 
-namespace Projects.Application.Queries.GetById;
+namespace Projects.Application.Projects.Queries.GetById;
 
 public sealed record GetProjectByIdQuery(
     Guid Id)
-    : IQuery<ProjectResponse>;
+    : IQuery<GetProjectByIdResponse>;

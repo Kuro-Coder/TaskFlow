@@ -2,10 +2,10 @@
 using BuildingBlocks.Application.Results;
 using Projects.Domain.Repositories;
 
-namespace Projects.Application.Queries.GetById;
+namespace Projects.Application.Projects.Queries.GetById;
 
 public sealed class GetProjectByIdQueryHandler
-    : IQueryHandler<GetProjectByIdQuery, ProjectResponse>
+    : IQueryHandler<GetProjectByIdQuery, GetProjectByIdResponse>
 {
     private readonly IProjectRepository _repository;
 
@@ -15,7 +15,7 @@ public sealed class GetProjectByIdQueryHandler
         _repository = repository;
     }
 
-    public async Task<Result<ProjectResponse>> Handle(
+    public async Task<Result<GetProjectByIdResponse>> Handle(
         GetProjectByIdQuery query,
         CancellationToken cancellationToken)
     {
@@ -25,14 +25,14 @@ public sealed class GetProjectByIdQueryHandler
 
         if (project is null)
         {
-            return Result<ProjectResponse>.Failure(
+            return Result<GetProjectByIdResponse>.Failure(
                 new Error(
                     "Projects.NotFound",
                     "Project not found"));
         }
 
-        return Result<ProjectResponse>.Success(
-            new ProjectResponse(
+        return Result<GetProjectByIdResponse>.Success(
+            new GetProjectByIdResponse(
                 project.Id,
                 project.Name));
     }

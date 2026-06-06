@@ -3,15 +3,15 @@ using BuildingBlocks.Application.Messaging;
 using BuildingBlocks.Application.Results;
 using Projects.Domain.Repositories;
 
-namespace Projects.Application.Commands.Delete;
+namespace Projects.Application.Projects.Commands.Update;
 
-public sealed class DeleteProjectCommandHandler
-    : ICommandHandler<DeleteProjectCommand, bool>
+public sealed class UpdateProjectCommandHandler
+    : ICommandHandler<UpdateProjectCommand, bool>
 {
     private readonly IProjectRepository _repository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public DeleteProjectCommandHandler(
+    public UpdateProjectCommandHandler(
         IProjectRepository repository,
         IUnitOfWork unitOfWork)
     {
@@ -20,10 +20,10 @@ public sealed class DeleteProjectCommandHandler
     }
 
     public async Task<Result<bool>> Handle(
-        DeleteProjectCommand command,
+        UpdateProjectCommand command,
         CancellationToken cancellationToken)
     {
-        var project = await _repository.GetByIdForDeleteAsync(
+        var project = await _repository.GetByIdForUpdateAsync(
             command.Id,
             cancellationToken);
 
@@ -35,7 +35,7 @@ public sealed class DeleteProjectCommandHandler
                     "Project not found"));
         }
 
-        project.Delete();
+        project.UpdateName(command.Name);
 
         await _unitOfWork.SaveChangesAsync(
             cancellationToken);

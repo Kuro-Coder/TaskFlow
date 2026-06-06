@@ -1,7 +1,7 @@
 ﻿using BuildingBlocks.Application.Messaging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Projects.Application.Commands.Create;
+using Projects.Application.Projects.Commands.Create;
 
 namespace Projects.Presentation.Features.Create;
 
@@ -23,18 +23,11 @@ public sealed class CreateProjectEndpoint : ControllerBase
         CreateProjectRequest request,
         CancellationToken cancellationToken)
     {
-        var result = await _dispatcher.Dispatch(
-            new CreateProjectCommand(
-                request.Name),
-            cancellationToken);
-
+        var result = await _dispatcher.Dispatch(new CreateProjectCommand(
+            request.Name), cancellationToken);
         if (result.IsFailure)
-        {
             return Results.BadRequest(result.Error);
-        }
 
-        return Results.Ok(
-            new CreateProjectResponse(
-                result.Value));
+        return Results.Ok(result.Value);
     }
 }

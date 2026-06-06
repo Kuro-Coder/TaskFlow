@@ -1,7 +1,7 @@
 ﻿using BuildingBlocks.Application.Messaging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Projects.Application.Queries.GetById;
+using Projects.Application.Projects.Queries.GetById;
 
 namespace Projects.Presentation.Features.GetById;
 
@@ -27,11 +27,8 @@ public sealed class GetProjectByIdEndpoint
         var result = await _dispatcher.Dispatch(
             new GetProjectByIdQuery(id),
             cancellationToken);
-
         if (result.IsFailure)
-        {
             return Results.NotFound(result.Error);
-        }
 
         return Results.Ok(
             new GetProjectByIdResponse(
