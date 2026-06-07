@@ -1,4 +1,5 @@
-﻿using BuildingBlocks.Domain.Abstractions;
+﻿using BuildingBlocks.Application.Abstractions;
+using BuildingBlocks.Domain.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
@@ -7,6 +8,12 @@ namespace BuildingBlocks.Infrastructure.Persistence.Interceptors;
 public sealed class AuditInterceptor
     : SaveChangesInterceptor
 {
+    private readonly ICurrentUser _currentUser;
+    public AuditInterceptor(ICurrentUser currentUser)
+    {
+        _currentUser = currentUser;
+    }
+
     public override ValueTask<InterceptionResult<int>>
         SavingChangesAsync(
             DbContextEventData eventData,
@@ -29,14 +36,20 @@ public sealed class AuditInterceptor
         {
             if (entry.State == EntityState.Added)
             {
-                entry.Entity.CreatedOnUtc =
-                    DateTime.UtcNow;
+                entry.Entity.CreatedBy = _currentUser.UserId;
+                entry.Entity.CreatedOnUtc = DateTime.UtcNow;
             }
 
             if (entry.State == EntityState.Modified)
             {
-                entry.Entity.ModifiedOnUtc =
-                    DateTime.UtcNow;
+                entry.Property(nameof(IAuditable.CreatedOnUtc))
+                    .IsModified = false;
+
+                entry.Property(nameof(IAuditable.CreatedBy))
+                    .IsModified = false;
+
+                entry.Entity.ModifiedBy = _currentUser.UserId;
+                entry.Entity.ModifiedOnUtc = DateTime.UtcNow;
             }
         }
 
