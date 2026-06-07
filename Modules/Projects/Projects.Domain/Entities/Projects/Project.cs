@@ -1,7 +1,7 @@
 ﻿using BuildingBlocks.Domain.Abstractions;
 using Projects.Domain.Events;
 
-namespace Projects.Domain.Entities;
+namespace Projects.Domain.Entities.Projects;
 
 public sealed class Project : AuditableAggregateRoot<Guid>, ISoftDelete
 {

@@ -1,6 +1,8 @@
+using BuildingBlocks.Application.Abstractions;
 using BuildingBlocks.Infrastructure;
 using Projects.Infrastructure;
 using Projects.Presentation;
+using TaskFlow.Api.Authentication;
 using TaskFlow.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,9 +10,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddBuildingBlocks();
+
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddScoped<ICurrentUser, CurrentUser>();
 
 builder.Services.AddProjectsInfrastructure(
     builder.Configuration.GetConnectionString("DefaultConnection")!);

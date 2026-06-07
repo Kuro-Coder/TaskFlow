@@ -1,6 +1,6 @@
 ﻿using BuildingBlocks.Domain.Abstractions;
 using Microsoft.EntityFrameworkCore;
-using Projects.Domain.Entities;
+using Projects.Domain.Entities.Projects;
 
 namespace Projects.Infrastructure.Persistence;
 

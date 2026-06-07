@@ -1,19 +1,13 @@
-﻿using Azure;
-using BuildingBlocks.Application.Common;
-using BuildingBlocks.Domain.Shared;
-using Microsoft.EntityFrameworkCore;
-using Projects.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Projects.Domain.Entities.Projects;
 using Projects.Domain.Repositories;
 using Projects.Infrastructure.Persistence;
-using System.Threading;
 
 namespace Projects.Infrastructure.Repositories;
 
-public sealed class ProjectRepository
-    : IProjectRepository
+public sealed class ProjectRepository : IProjectRepository
 {
     private readonly ProjectsDbContext _context;
-
     public ProjectRepository(
         ProjectsDbContext context)
     {
