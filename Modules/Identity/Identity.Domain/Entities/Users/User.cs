@@ -3,11 +3,20 @@
 namespace Identity.Domain.Entities.Users;
 
 public sealed class User
-    : AuditableAggregateRoot<Guid>
+    : AuditableAggregateRoot<Guid>, ISoftDelete
 {
-    private User()
-    {
-    }
+    public string FirstName { get; private set; }
+
+    public string LastName { get; private set; }
+
+    public string Email { get; private set; }
+
+    public string PasswordHash { get; private set; }
+
+    public bool IsActive { get; private set; }
+
+    public bool IsDeleted { get; private set; }
+    public DateTime? DeletedOnUtc { get; private set; }
 
     private User(
         Guid id,
@@ -23,16 +32,6 @@ public sealed class User
         PasswordHash = passwordHash;
         IsActive = true;
     }
-
-    public string FirstName { get; private set; }
-
-    public string LastName { get; private set; }
-
-    public string Email { get; private set; }
-
-    public string PasswordHash { get; private set; }
-
-    public bool IsActive { get; private set; }
 
     public static User Create(
         string firstName,
@@ -52,4 +51,15 @@ public sealed class User
     {
         IsActive = false;
     }
+
+    public void Delete()
+    {
+        IsDeleted = true;
+        DeletedOnUtc = DateTime.UtcNow;
+    }
+
+    private User()
+    {
+    }
+
 }
