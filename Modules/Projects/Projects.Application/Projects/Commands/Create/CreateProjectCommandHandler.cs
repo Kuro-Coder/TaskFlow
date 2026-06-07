@@ -1,7 +1,7 @@
 ﻿using BuildingBlocks.Application.Abstractions;
 using BuildingBlocks.Application.Messaging;
 using BuildingBlocks.Application.Results;
-using Projects.Domain.Entities;
+using Projects.Domain.Entities.Projects;
 using Projects.Domain.Repositories;
 
 namespace Projects.Application.Projects.Commands.Create;

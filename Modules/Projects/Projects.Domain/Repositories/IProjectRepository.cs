@@ -1,5 +1,5 @@
 ﻿using BuildingBlocks.Domain.Shared;
-using Projects.Domain.Entities;
+using Projects.Domain.Entities.Projects;
 
 namespace Projects.Domain.Repositories;
 

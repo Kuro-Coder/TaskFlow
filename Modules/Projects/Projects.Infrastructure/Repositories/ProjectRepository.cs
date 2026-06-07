@@ -2,7 +2,7 @@
 using BuildingBlocks.Application.Common;
 using BuildingBlocks.Domain.Shared;
 using Microsoft.EntityFrameworkCore;
-using Projects.Domain.Entities;
+using Projects.Domain.Entities.Projects;
 using Projects.Domain.Repositories;
 using Projects.Infrastructure.Persistence;
 using System.Threading;
