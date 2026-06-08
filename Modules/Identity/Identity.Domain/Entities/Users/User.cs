@@ -2,8 +2,7 @@
 
 namespace Identity.Domain.Entities.Users;
 
-public sealed class User
-    : AuditableAggregateRoot<Guid>, ISoftDelete
+public sealed class User : AuditableAggregateRoot<Guid>, ISoftDelete
 {
     public string FirstName { get; private set; }
 
