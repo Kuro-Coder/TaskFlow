@@ -3,6 +3,7 @@
     <Project Path="BuildingBlocks/BuildingBlocks.Application/BuildingBlocks.Application.csproj" Id="432dafac-b523-406e-ae77-2522500d3d35" />
     <Project Path="BuildingBlocks/BuildingBlocks.Domain/BuildingBlocks.Domain.csproj" Id="6ff7174f-4c71-43f7-9144-b1b96be4d781" />
     <Project Path="BuildingBlocks/BuildingBlocks.Infrastructure/BuildingBlocks.Infrastructure.csproj" Id="de99ab13-d4dc-494b-96ff-24be84ab5d6a" />
+    <Project Path="BuildingBlocks/BuildingBlocks.Presentation/BuildingBlocks.Presentation.csproj" Id="f29528a6-2807-40e9-9a7c-9a98a9fedf7c" />
   </Folder>
   <Folder Name="/Host/">
     <Project Path="Host/TaskFlow.Api/TaskFlow.Api.csproj" Id="2d4284fb-03d9-420b-b9dd-772ce2b53602" />
