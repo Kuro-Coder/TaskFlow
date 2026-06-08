@@ -1,4 +1,5 @@
-﻿using Identity.Domain.Entities.Users;
+﻿using Identity.Domain.Entities.RefreshTokens;
+using Identity.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Infrastructure.Persistence;
@@ -6,6 +7,7 @@ namespace Identity.Infrastructure.Persistence;
 public sealed class IdentityDbContext : DbContext
 {
     public DbSet<User> Users => Set<User>();
+    public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
 
     public IdentityDbContext(
         DbContextOptions<IdentityDbContext> options) : base(options)
@@ -19,6 +21,9 @@ public sealed class IdentityDbContext : DbContext
             typeof(IdentityDbContext).Assembly);
 
         modelBuilder.Entity<User>()
+            .HasQueryFilter(x => !x.IsDeleted);
+
+        modelBuilder.Entity<RefreshToken>()
             .HasQueryFilter(x => !x.IsDeleted);
 
     }
