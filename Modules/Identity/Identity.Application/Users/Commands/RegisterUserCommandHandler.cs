@@ -8,9 +8,7 @@ using Identity.Domain.Repositories;
 namespace Identity.Application.Users.Commands;
 
 public sealed class RegisterUserCommandHandler
-    : ICommandHandler<
-        RegisterUserCommand,
-        Guid>
+    : ICommandHandler<RegisterUserCommand, Guid>
 {
     private readonly IUserRepository _repository;
     private readonly IPasswordHashingService _passwordHasher;
