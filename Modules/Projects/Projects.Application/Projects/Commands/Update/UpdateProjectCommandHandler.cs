@@ -32,7 +32,8 @@ public sealed class UpdateProjectCommandHandler
             return Result<bool>.Failure(
                 new Error(
                     "Projects.NotFound",
-                    "Project not found"));
+                    "Project not found", 
+                    ErrorType.NotFound));
         }
 
         project.UpdateName(command.Name);

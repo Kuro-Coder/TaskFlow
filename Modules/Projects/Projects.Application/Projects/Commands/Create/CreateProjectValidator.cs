@@ -1,8 +1,5 @@
 ﻿using BuildingBlocks.Application.Abstractions;
-using BuildingBlocks.Application.Messaging;
 using BuildingBlocks.Application.Results;
-using Projects.Domain.Entities;
-using Projects.Domain.Repositories;
 
 namespace Projects.Application.Projects.Commands.Create;
 
@@ -19,7 +16,8 @@ public sealed class CreateProjectValidator
             errors.Add(
                 new Error(
                     "Projects.Name.Empty",
-                    "Project name is required"));
+                    "Project name is required",
+                    ErrorType.Validation));
         }
 
         if (command.Name.Length > 100)
@@ -27,7 +25,8 @@ public sealed class CreateProjectValidator
             errors.Add(
                 new Error(
                     "Projects.Name.TooLong",
-                    "Project name is too long"));
+                    "Project name is too long",
+                    ErrorType.Validation));
         }
 
         return errors;

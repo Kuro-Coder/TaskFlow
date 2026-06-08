@@ -28,7 +28,8 @@ public sealed class GetProjectByIdQueryHandler
             return Result<GetProjectByIdResponse>.Failure(
                 new Error(
                     "Projects.NotFound",
-                    "Project not found"));
+                    "Project not found",
+                    ErrorType.NotFound));
         }
 
         return Result<GetProjectByIdResponse>.Success(
