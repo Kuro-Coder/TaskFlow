@@ -40,7 +40,8 @@ public sealed class RegisterUserCommandHandler
             return Result<Guid>.Failure(
                 new Error(
                     "Identity.EmailAlreadyExists",
-                    "Email already exists"));
+                    "Email already exists",
+                    ErrorType.Conflict));
         }
 
         var user = User.Create(

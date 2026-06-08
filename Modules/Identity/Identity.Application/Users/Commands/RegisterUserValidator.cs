@@ -16,7 +16,8 @@ public sealed class RegisterUserValidator
             errors.Add(
                 new Error(
                     "Users.Name.Empty",
-                    "User FirstName is required"));
+                    "User FirstName is required",
+                    ErrorType.Validation));
         }
 
         //TODO validators

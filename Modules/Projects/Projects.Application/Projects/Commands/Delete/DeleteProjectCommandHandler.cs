@@ -32,7 +32,8 @@ public sealed class DeleteProjectCommandHandler
             return Result<bool>.Failure(
                 new Error(
                     "Projects.NotFound",
-                    "Project not found"));
+                    "Project not found",
+                    ErrorType.NotFound));
         }
 
         project.Delete();

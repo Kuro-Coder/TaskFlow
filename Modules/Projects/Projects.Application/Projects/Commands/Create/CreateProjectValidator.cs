@@ -16,7 +16,8 @@ public sealed class CreateProjectValidator
             errors.Add(
                 new Error(
                     "Projects.Name.Empty",
-                    "Project name is required"));
+                    "Project name is required",
+                    ErrorType.Validation));
         }
 
         if (command.Name.Length > 100)
@@ -24,7 +25,8 @@ public sealed class CreateProjectValidator
             errors.Add(
                 new Error(
                     "Projects.Name.TooLong",
-                    "Project name is too long"));
+                    "Project name is too long",
+                    ErrorType.Validation));
         }
 
         return errors;
