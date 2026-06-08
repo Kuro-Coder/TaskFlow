@@ -1,7 +1,7 @@
 ﻿
 namespace Identity.Application.Abstractions;
 
-public interface IPasswordHasher
+public interface IPasswordHashingService
 {
     string Hash(
         string password);
