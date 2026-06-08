@@ -12,6 +12,7 @@
     <Project Path="Modules/Identity/Identity.Application/Identity.Application.csproj" Id="b5f76772-c5f6-43bd-bf04-e977b5f2c646" />
     <Project Path="Modules/Identity/Identity.Domain/Identity.Domain.csproj" Id="6b49334b-e6bf-4e00-abbf-4377fb6964a4" />
     <Project Path="Modules/Identity/Identity.Infrastructure/Identity.Infrastructure.csproj" Id="1ff060c7-64c6-46ee-af51-73755e3ef8a9" />
+    <Project Path="Modules/Identity/Identity.Presentation/Identity.Presentation.csproj" Id="fb97d7c9-1ffc-4902-b9db-acc6702d298a" />
   </Folder>
   <Folder Name="/Modules/Projects/">
     <Project Path="Modules/Projects/Projects.Application/Projects.Application.csproj" Id="123b72dd-99a8-424e-a4f3-1f8670ed1221" />
