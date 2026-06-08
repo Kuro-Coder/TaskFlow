@@ -15,6 +15,7 @@ public sealed class User : AuditableAggregateRoot<Guid>, ISoftDelete
     public bool IsActive { get; private set; }
 
     public bool IsDeleted { get; private set; }
+
     public DateTime? DeletedOnUtc { get; private set; }
 
     private User(
