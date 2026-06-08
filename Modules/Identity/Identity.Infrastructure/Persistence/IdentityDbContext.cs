@@ -3,14 +3,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Infrastructure.Persistence;
 
-public sealed class IdentityDbContext
-    : DbContext
+public sealed class IdentityDbContext : DbContext
 {
     public DbSet<User> Users => Set<User>();
 
     public IdentityDbContext(
-        DbContextOptions<IdentityDbContext> options)
-        : base(options)
+        DbContextOptions<IdentityDbContext> options) : base(options)
     {
     }
 
