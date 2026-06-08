@@ -1,5 +1,6 @@
 using BuildingBlocks.Application.Abstractions;
 using BuildingBlocks.Infrastructure;
+using Identity.Infrastructure;
 using Projects.Infrastructure;
 using Projects.Presentation;
 using TaskFlow.Api.Authentication;
@@ -20,6 +21,9 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ICurrentUser, CurrentUser>();
 
 builder.Services.AddProjectsInfrastructure(
+    builder.Configuration.GetConnectionString("DefaultConnection")!);
+
+builder.Services.AddIdentitiesInfrastructure(
     builder.Configuration.GetConnectionString("DefaultConnection")!);
 
 builder.Services
