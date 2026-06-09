@@ -1,6 +1,7 @@
 using BuildingBlocks.Application.Abstractions;
 using BuildingBlocks.Infrastructure;
 using Identity.Infrastructure;
+using Identity.Presentation;
 using Projects.Infrastructure;
 using Projects.Presentation;
 using TaskFlow.Api.Authentication;
@@ -26,10 +27,9 @@ builder.Services.AddProjectsInfrastructure(
 builder.Services.AddIdentitiesInfrastructure(
     builder.Configuration.GetConnectionString("DefaultConnection")!);
 
-builder.Services
-    .AddControllers()
-    .AddApplicationPart(
-        typeof(AssemblyReference).Assembly);
+builder.Services.AddProjectsPresentation();
+
+builder.Services.AddIdentityPresentation();
 
 var app = builder.Build();
 
