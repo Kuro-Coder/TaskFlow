@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using BuildingBlocks.Application.Messaging;
-using Identity.Application.Users.Commands;
 using BuildingBlocks.Presentation.Extensions;
+using Identity.Application.Users.Commands.Register;
 
 namespace Identity.Presentation.Features.Register;
 
