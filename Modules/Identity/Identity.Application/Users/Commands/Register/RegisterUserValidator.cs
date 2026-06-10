@@ -1,7 +1,7 @@
 ﻿using BuildingBlocks.Application.Abstractions;
 using BuildingBlocks.Application.Results;
 
-namespace Identity.Application.Users.Commands;
+namespace Identity.Application.Users.Commands.Register;
 
 public sealed class RegisterUserValidator
     : IValidator<RegisterUserCommand>

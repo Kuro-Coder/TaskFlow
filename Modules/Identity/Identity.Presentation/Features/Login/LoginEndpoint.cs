@@ -2,18 +2,18 @@
 using Microsoft.AspNetCore.Mvc;
 using BuildingBlocks.Application.Messaging;
 using BuildingBlocks.Presentation.Extensions;
-using Identity.Application.Users.Commands.Register;
+using Identity.Application.Users.Commands.Login;
 
-namespace Identity.Presentation.Features.Register;
+namespace Identity.Presentation.Features.Login;
 
 [ApiController]
-[Route("api/identity/register")]
+[Route("api/identity/Login")]
 [Tags("Identity")]
-public sealed class RegisterEndpoint : ControllerBase
+public sealed class LoginEndpoint : ControllerBase
 {
     private readonly ICommandDispatcher _dispatcher;
 
-    public RegisterEndpoint(
+    public LoginEndpoint(
         ICommandDispatcher dispatcher)
     {
         _dispatcher = dispatcher;
@@ -21,19 +21,15 @@ public sealed class RegisterEndpoint : ControllerBase
 
     [HttpPost]
     public async Task<IResult> Handle(
-        RegisterRequest request,
+        LoginRequest request,
         CancellationToken cancellationToken)
     {
-        var result = await _dispatcher.Dispatch(new RegisterUserCommand(
-            request.FirstName,
-            request.LastName,
+        var result = await _dispatcher.Dispatch(new LoginUserCommand(
             request.Email,
             request.Password),
             cancellationToken);
         if (result.IsFailure)
-        {
             return result.ToProblemResult();
-        }
 
         return Results.Ok(result.Value);
     }
