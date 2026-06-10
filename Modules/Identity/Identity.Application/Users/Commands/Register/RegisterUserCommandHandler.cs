@@ -5,7 +5,7 @@ using Identity.Application.Abstractions;
 using Identity.Domain.Entities.Users;
 using Identity.Domain.Repositories;
 
-namespace Identity.Application.Users.Commands;
+namespace Identity.Application.Users.Commands.Register;
 
 public sealed class RegisterUserCommandHandler
     : ICommandHandler<RegisterUserCommand, Guid>
