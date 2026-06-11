@@ -36,7 +36,7 @@ public static class DependencyInjection
 
         // Handlers
         services.Scan(scan => scan
-            .FromAssemblies(typeof(Projects.Application.AssemblyReference).Assembly)
+            .FromAssemblies(typeof(Application.AssemblyReference).Assembly)
             .AddClasses(c =>
                 c.AssignableTo(typeof(IValidator<>)))
             .AsImplementedInterfaces()
@@ -49,7 +49,7 @@ public static class DependencyInjection
 
         services.Scan(scan => scan
             .FromAssemblies(
-                typeof(Projects.Application.AssemblyReference).Assembly)
+                typeof(Application.AssemblyReference).Assembly)
             .AddClasses(c =>
                 c.AssignableTo(typeof(ICommandHandler<,>)))
             .AsImplementedInterfaces()
