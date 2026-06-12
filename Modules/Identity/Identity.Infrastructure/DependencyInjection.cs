@@ -3,10 +3,13 @@ using BuildingBlocks.Application.Messaging;
 using BuildingBlocks.Infrastructure.Messaging;
 using BuildingBlocks.Infrastructure.Persistence.Interceptors;
 using Identity.Application.Abstractions;
+using Identity.Application.Users;
 using Identity.Domain.Repositories;
+using Identity.Infrastructure.Authentication;
 using Identity.Infrastructure.Persistence;
 using Identity.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Identity.Infrastructure;
@@ -16,8 +19,9 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddIdentitiesInfrastructure(
         this IServiceCollection services,
-        string connectionString)
+        IConfiguration configuration)
     {
+        var connectionString = configuration.GetConnectionString("DefaultConnection")!;
         services.AddDbContext<IdentityDbContext>((sp, options) =>
         {
             options.UseSqlServer(connectionString);
@@ -35,6 +39,10 @@ public static class DependencyInjection
         services.AddScoped<IQueryDispatcher, QueryDispatcher>();
 
         services.AddScoped<IPasswordHashingService, PasswordHashingService>();
+
+        services.Configure<JwtOptions>(configuration.GetSection("Jwt"));
+
+        services.AddScoped<IJwtProvider, JwtProvider>();
 
         // Handlers
         services.Scan(scan => scan
