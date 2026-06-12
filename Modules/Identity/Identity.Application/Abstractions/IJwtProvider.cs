@@ -1,10 +1,10 @@
 ﻿
+using Identity.Application.Users.Commands.Login;
 using Identity.Domain.Entities.Users;
 
 namespace Identity.Application.Abstractions;
 
 public interface IJwtProvider
 {
-    string Generate(
-        User user);
+    TokenResponse GenerateToken(User user);
 }

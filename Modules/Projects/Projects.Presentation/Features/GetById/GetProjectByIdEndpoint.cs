@@ -1,5 +1,6 @@
 ﻿using BuildingBlocks.Application.Messaging;
 using BuildingBlocks.Presentation.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Projects.Application.Projects.Queries.GetById;
@@ -9,6 +10,7 @@ namespace Projects.Presentation.Features.GetById;
 [ApiController]
 [Route("api/projects")]
 [Tags("Projects")]
+[Authorize]
 public sealed class GetProjectByIdEndpoint
     : ControllerBase
 {

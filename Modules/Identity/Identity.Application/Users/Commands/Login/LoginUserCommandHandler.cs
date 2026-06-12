@@ -11,14 +11,17 @@ public sealed class LoginUserCommandHandler
         LoginResponse>
 {
     private readonly IUserRepository _repository;
+    private readonly IJwtProvider _jwtProvider;
     private readonly IPasswordHashingService _passwordHasher;
 
     public LoginUserCommandHandler(
         IUserRepository repository,
-        IPasswordHashingService passwordHasher)
+        IPasswordHashingService passwordHasher,
+        IJwtProvider jwtProvider)
     {
         _repository = repository;
         _passwordHasher = passwordHasher;
+        _jwtProvider = jwtProvider;
     }
 
     public async Task<Result<LoginResponse>> Handle(
@@ -53,6 +56,10 @@ public sealed class LoginUserCommandHandler
                     ErrorType.Validation));
         }
 
-        throw new NotImplementedException();
+        var token = _jwtProvider.GenerateToken(user);
+
+        return Result<LoginResponse>.Success(new LoginResponse(
+            token.AccessToken,
+            token.ExpiresAtUtc));
     }
 }
