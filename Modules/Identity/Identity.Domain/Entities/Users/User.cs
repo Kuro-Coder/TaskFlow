@@ -1,4 +1,5 @@
 ﻿using BuildingBlocks.Domain.Abstractions;
+using Identity.Domain.Entities.RefreshTokens;
 
 namespace Identity.Domain.Entities.Users;
 
@@ -59,6 +60,9 @@ public sealed class User : AuditableAggregateRoot<Guid>, ISoftDelete
     }
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    private readonly List<RefreshToken> _refreshTokens = [];
+    public IReadOnlyCollection<RefreshToken> RefreshTokens => _refreshTokens;
+
     private User()
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
     {
