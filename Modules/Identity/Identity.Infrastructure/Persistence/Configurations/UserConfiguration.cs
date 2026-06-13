@@ -27,5 +27,6 @@ public sealed class UserConfiguration
 
         builder.Property(x => x.IsActive)
             .IsRequired();
+
     }
 }
