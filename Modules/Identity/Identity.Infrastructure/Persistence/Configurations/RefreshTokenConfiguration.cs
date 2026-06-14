@@ -14,7 +14,7 @@ public sealed class RefreshTokenConfiguration
 
         builder.Property(x => x.Token)
             .IsRequired()
-            .HasMaxLength(500);
+            .HasMaxLength(1000);
 
         builder.Property(x => x.ExpiresOnUtc)
             .IsRequired();
