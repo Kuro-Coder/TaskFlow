@@ -7,7 +7,7 @@ using Identity.Application.Users.Commands.Login;
 namespace Identity.Presentation.Features.Login;
 
 [ApiController]
-[Route("api/identity/Login")]
+[Route("api/identity/user")]
 [Tags("Identity")]
 public sealed class LoginEndpoint : ControllerBase
 {
@@ -19,7 +19,7 @@ public sealed class LoginEndpoint : ControllerBase
         _dispatcher = dispatcher;
     }
 
-    [HttpPost]
+    [HttpPost("login")]
     public async Task<IResult> Handle(
         LoginRequest request,
         CancellationToken cancellationToken)
