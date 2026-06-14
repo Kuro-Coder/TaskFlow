@@ -7,7 +7,7 @@ using Identity.Application.Users.Commands.Register;
 namespace Identity.Presentation.Features.Register;
 
 [ApiController]
-[Route("api/identity/register")]
+[Route("api/identity/user")]
 [Tags("Identity")]
 public sealed class RegisterEndpoint : ControllerBase
 {
@@ -19,7 +19,7 @@ public sealed class RegisterEndpoint : ControllerBase
         _dispatcher = dispatcher;
     }
 
-    [HttpPost]
+    [HttpPost("register")]
     public async Task<IResult> Handle(
         RegisterRequest request,
         CancellationToken cancellationToken)

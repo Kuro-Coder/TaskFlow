@@ -7,4 +7,6 @@ namespace Identity.Application.Abstractions;
 public interface IJwtProvider
 {
     TokenResponse GenerateToken(User user);
+
+    string GenerateRefreshToken();
 }

@@ -2,31 +2,30 @@
 using Microsoft.AspNetCore.Mvc;
 using BuildingBlocks.Application.Messaging;
 using BuildingBlocks.Presentation.Extensions;
-using Identity.Application.Users.Commands.Login;
+using Identity.Application.Users.Commands.RefreshToken;
 
-namespace Identity.Presentation.Features.Login;
+namespace Identity.Presentation.Features.RefreshToken;
 
 [ApiController]
 [Route("api/identity/user")]
 [Tags("Identity")]
-public sealed class LoginEndpoint : ControllerBase
+public sealed class RefreshTokenEndpoint : ControllerBase
 {
     private readonly ICommandDispatcher _dispatcher;
 
-    public LoginEndpoint(
+    public RefreshTokenEndpoint(
         ICommandDispatcher dispatcher)
     {
         _dispatcher = dispatcher;
     }
 
-    [HttpPost("login")]
+    [HttpPost("refresh-token")]
     public async Task<IResult> Handle(
-        LoginRequest request,
+        RefreshTokenRequest request,
         CancellationToken cancellationToken)
     {
-        var result = await _dispatcher.Dispatch(new LoginUserCommand(
-            request.Email,
-            request.Password),
+        var result = await _dispatcher.Dispatch(new RefreshTokenCommand(
+            request.RefreshToken),
             cancellationToken);
         if (result.IsFailure)
             return result.ToProblemResult();

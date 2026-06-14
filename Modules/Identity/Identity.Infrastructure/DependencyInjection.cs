@@ -31,18 +31,20 @@ public static class DependencyInjection
                 sp.GetRequiredService<DomainEventsInterceptor>());
         });
 
-        services.AddScoped<IUserRepository, UserRepository>();
-
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        //Repos
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
+
+        services.AddScoped<IPasswordHashingService, PasswordHashingService>();
+
+        services.AddScoped<IJwtProvider, JwtProvider>();
 
         services.AddScoped<ICommandDispatcher, CommandDispatcher>();
         services.AddScoped<IQueryDispatcher, QueryDispatcher>();
 
-        services.AddScoped<IPasswordHashingService, PasswordHashingService>();
-
         services.Configure<JwtOptions>(configuration.GetSection("Jwt"));
-
-        services.AddScoped<IJwtProvider, JwtProvider>();
 
         // Handlers
         services.Scan(scan => scan

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Identity.Presentation.Features.CurentUser;
 
 [ApiController]
-[Route("api/identity/CurentUser")]
+[Route("api/identity/user")]
 [Tags("Identity")]
 public sealed class CurentUserEndpoint : ControllerBase
 {
