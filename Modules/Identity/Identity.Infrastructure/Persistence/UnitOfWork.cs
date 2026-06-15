@@ -1,5 +1,4 @@
-﻿using BuildingBlocks.Application.Abstractions;
-
+﻿
 namespace Identity.Infrastructure.Persistence;
 
 public sealed class UnitOfWork

@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using BuildingBlocks.Application.Messaging;
-using BuildingBlocks.Presentation.Extensions;
-using Identity.Application.Users.Commands.RefreshToken;
+﻿using Identity.Application.Users.Commands.RefreshToken;
 
 namespace Identity.Presentation.Features.RefreshToken;
 

@@ -1,14 +1,10 @@
-﻿using BuildingBlocks.Application.Messaging;
-using BuildingBlocks.Application.Results;
-using Identity.Application.Abstractions;
+﻿using Identity.Application.Abstractions;
 using Identity.Domain.Repositories;
 
 namespace Identity.Application.Users.Commands.Login;
 
 public sealed class LoginUserCommandHandler
-    : ICommandHandler<
-        LoginUserCommand,
-        LoginResponse>
+    : ICommandHandler<LoginUserCommand, LoginResponse>
 {
     private readonly IUserRepository _repository;
     private readonly IJwtProvider _jwtProvider;
@@ -28,11 +24,8 @@ public sealed class LoginUserCommandHandler
         LoginUserCommand command,
         CancellationToken cancellationToken)
     {
-        var user =
-            await _repository.GetByEmailAsync(
-                command.Email,
-                cancellationToken);
-
+        var user = await _repository.GetByEmailAsync(
+            command.Email, cancellationToken);
         if (user is null)
         {
             return Result<LoginResponse>.Failure(
@@ -42,11 +35,7 @@ public sealed class LoginUserCommandHandler
                     ErrorType.Validation));
         }
 
-        var isValid =
-            _passwordHasher.Verify(
-                command.Password,
-                user.PasswordHash);
-
+        var isValid = _passwordHasher.Verify(command.Password, user.PasswordHash);
         if (!isValid)
         {
             return Result<LoginResponse>.Failure(

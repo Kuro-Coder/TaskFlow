@@ -1,5 +1,4 @@
-﻿using BuildingBlocks.Domain.Abstractions;
-using Identity.Domain.Entities.RefreshTokens;
+﻿using Identity.Domain.Entities.RefreshTokens;
 
 namespace Identity.Domain.Entities.Users;
 

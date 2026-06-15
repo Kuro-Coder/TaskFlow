@@ -1,7 +1,4 @@
-﻿using BuildingBlocks.Application.Abstractions;
-using BuildingBlocks.Application.Messaging;
-using BuildingBlocks.Application.Results;
-using Identity.Application.Abstractions;
+﻿using Identity.Application.Abstractions;
 using Identity.Domain.Repositories;
 
 namespace Identity.Application.Users.Commands.RefreshToken;

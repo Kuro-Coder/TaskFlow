@@ -1,7 +1,4 @@
-﻿using BuildingBlocks.Application.Abstractions;
-using BuildingBlocks.Application.Messaging;
-using BuildingBlocks.Application.Results;
-using Identity.Application.Abstractions;
+﻿using Identity.Application.Abstractions;
 using Identity.Domain.Entities.Users;
 using Identity.Domain.Repositories;
 
@@ -28,11 +25,8 @@ public sealed class RegisterUserCommandHandler
         RegisterUserCommand command,
         CancellationToken cancellationToken)
     {
-        var exists =
-            await _repository.GetByEmailAsync(
-                command.Email,
-                cancellationToken);
-
+        var exists = await _repository.GetByEmailAsync(
+            command.Email, cancellationToken);
         if (exists is not null)
         {
             return Result<Guid>.Failure(
