@@ -1,6 +1,4 @@
-﻿using BuildingBlocks.Application.Abstractions;
-using BuildingBlocks.Application.Results;
-
+﻿
 namespace Identity.Application.Users.Commands.RefreshToken;
 
 public sealed class RefreshTokenUserValidator

@@ -1,8 +1,4 @@
-﻿using BuildingBlocks.Application.Abstractions;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
+﻿
 namespace Identity.Presentation.Features.CurentUser;
 
 [ApiController]

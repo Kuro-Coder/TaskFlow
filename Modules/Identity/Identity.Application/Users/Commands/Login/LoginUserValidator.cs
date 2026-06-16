@@ -1,6 +1,4 @@
-﻿using BuildingBlocks.Application.Abstractions;
-using BuildingBlocks.Application.Results;
-
+﻿
 namespace Identity.Application.Users.Commands.Login;
 
 public sealed class LoginUserValidator

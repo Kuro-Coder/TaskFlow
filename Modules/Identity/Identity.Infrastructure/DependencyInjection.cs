@@ -1,9 +1,5 @@
-﻿using BuildingBlocks.Application.Abstractions;
-using BuildingBlocks.Application.Messaging;
-using BuildingBlocks.Infrastructure.Messaging;
+﻿using BuildingBlocks.Infrastructure.Messaging;
 using BuildingBlocks.Infrastructure.Persistence.Interceptors;
-using Identity.Application.Abstractions;
-using Identity.Application.Users;
 using Identity.Domain.Repositories;
 using Identity.Infrastructure.Authentication;
 using Identity.Infrastructure.Persistence;
@@ -13,7 +9,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Identity.Infrastructure;
-
 
 public static class DependencyInjection
 {

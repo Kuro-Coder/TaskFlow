@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Identity.Application.Abstractions;
 
 namespace Identity.Infrastructure.Repositories;
 
 
-public sealed class PasswordHashingService
-    : IPasswordHashingService
+public sealed class PasswordHashingService : IPasswordHashingService
 {
     private readonly PasswordHasher<object> _passwordHasher = new();
 

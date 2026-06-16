@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using BuildingBlocks.Application.Messaging;
-using BuildingBlocks.Presentation.Extensions;
-using Identity.Application.Users.Commands.Register;
+﻿using Identity.Application.Users.Commands.Register;
 
 namespace Identity.Presentation.Features.Register;
 
@@ -31,9 +27,7 @@ public sealed class RegisterEndpoint : ControllerBase
             request.Password),
             cancellationToken);
         if (result.IsFailure)
-        {
             return result.ToProblemResult();
-        }
 
         return Results.Ok(result.Value);
     }
