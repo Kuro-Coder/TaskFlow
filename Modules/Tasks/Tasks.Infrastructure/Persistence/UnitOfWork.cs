@@ -2,8 +2,7 @@
 
 namespace Tasks.Infrastructure.Persistence;
 
-public sealed class UnitOfWork
-    : IUnitOfWork
+public sealed class UnitOfWork : IUnitOfWork
 {
     private readonly TasksDbContext _context;
 
