@@ -35,9 +35,6 @@ builder.Services.AddIdentityPresentation();
 builder.Services.AddProjectsPresentation();
 builder.Services.AddTasksPresentation();
 
-var jwtSection =
-    builder.Configuration.GetSection("Jwt");
-
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc(
@@ -77,6 +74,7 @@ builder.Services.AddSwaggerGen(options =>
         });
 });
 
+var jwtSection = builder.Configuration.GetSection("Jwt");
 var secretKey = jwtSection["SecretKey"]!;
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
