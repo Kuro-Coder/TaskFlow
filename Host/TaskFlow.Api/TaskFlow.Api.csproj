@@ -21,6 +21,7 @@
     <ProjectReference Include="..\..\Modules\Projects\Projects.Infrastructure\Projects.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Modules\Projects\Projects.Presentation\Projects.Presentation.csproj" />
     <ProjectReference Include="..\..\Modules\Tasks\Tasks.Infrastructure\Tasks.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Modules\Tasks\Tasks.Presentation\Tasks.Presentation\Tasks.Presentation.csproj" />
   </ItemGroup>
 
 </Project>

@@ -25,5 +25,6 @@
     <Project Path="Modules/Tasks/Tasks.Application/Tasks.Application.csproj" Id="9c8e16fe-9dd9-4d31-b5b1-19021f13fa1c" />
     <Project Path="Modules/Tasks/Tasks.Domain/Tasks.Domain.csproj" Id="8f0ffc04-f1d9-4a3c-816a-79521deb049c" />
     <Project Path="Modules/Tasks/Tasks.Infrastructure/Tasks.Infrastructure.csproj" Id="8234dbeb-c09f-44cc-b967-ea85e9c7fee7" />
+    <Project Path="Modules/Tasks/Tasks.Presentation/Tasks.Presentation/Tasks.Presentation.csproj" Id="f84c5c4f-4ca7-4b8d-8bbd-4a8b4ecfe4ca" />
   </Folder>
 </Solution>

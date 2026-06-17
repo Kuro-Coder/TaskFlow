@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Projects.Infrastructure;
 using Projects.Presentation;
+using Tasks.Presentation;
 using System.Text;
 using TaskFlow.Api.Authentication;
 using TaskFlow.Api.Extensions;
@@ -30,11 +31,9 @@ builder.Services.AddProjectsInfrastructure(
 
 builder.Services.AddIdentitiesInfrastructure(builder.Configuration!);
 
-builder.Services.AddProjectsPresentation();
-
 builder.Services.AddIdentityPresentation();
-var jwtSection =
-    builder.Configuration.GetSection("Jwt");
+builder.Services.AddProjectsPresentation();
+builder.Services.AddTasksPresentation();
 
 builder.Services.AddSwaggerGen(options =>
 {
@@ -75,10 +74,9 @@ builder.Services.AddSwaggerGen(options =>
         });
 });
 
+var jwtSection = builder.Configuration.GetSection("Jwt");
 var secretKey = jwtSection["SecretKey"]!;
-builder.Services
-    .AddAuthentication(
-        JwtBearerDefaults.AuthenticationScheme)
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
         options.TokenValidationParameters =
@@ -89,16 +87,12 @@ builder.Services
                 ValidateLifetime = true,
                 ValidateIssuerSigningKey = true,
 
-                ValidIssuer =
-                    jwtSection["Issuer"],
+                ValidIssuer = jwtSection["Issuer"],
 
-                ValidAudience =
-                    jwtSection["Audience"],
+                ValidAudience = jwtSection["Audience"],
 
-                IssuerSigningKey =
-                    new SymmetricSecurityKey(
-                        Encoding.UTF8.GetBytes(
-                            secretKey))
+                IssuerSigningKey = new SymmetricSecurityKey(
+                    Encoding.UTF8.GetBytes(secretKey))
             };
     });
 
