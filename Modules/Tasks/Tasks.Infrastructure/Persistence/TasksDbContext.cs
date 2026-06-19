@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Tasks.Domain.Entities;
 
 namespace Tasks.Infrastructure.Persistence;
 
@@ -15,6 +16,7 @@ public sealed class TasksDbContext : DbContext
         modelBuilder.ApplyConfigurationsFromAssembly(
             typeof(TasksDbContext).Assembly);
 
-
+        modelBuilder.Entity<TaskItem>()
+            .HasQueryFilter(x => !x.IsDeleted);
     }
 }
